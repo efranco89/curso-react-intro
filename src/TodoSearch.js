@@ -1,15 +1,15 @@
 import './TodoSearch.css'
-function TodoSearch() {
+
+function TodoSearch(props) {
+
   return (
     <input 
       className="TodoSearch" 
       placeholder="Cortar Cebolla"
+      value={props.searchValue}
       onChange={
         (event) => {
-          console.log('Escribiste en el TodoSearch');
-          console.log(event);
-          console.log(event.target);
-          console.log(event.target.value);
+          props.setSearchValue(event.target.value)
         }
       }
     />
