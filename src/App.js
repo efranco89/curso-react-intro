@@ -15,21 +15,26 @@ import React from 'react';
 // ]
 // localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
 
+// This is a custom hook
+function useLocalStorage(itemName, initialItem) {
+  
+  const localStorageItem = localStorage.getItem(itemName)
+  let parsedItem = JSON.stringify(initialItem);
+
+  if (localStorageItem) {
+    parsedItem = JSON.parse(localStorageItem);
+  }
+  const [item, setItem] = React.useState(parsedItem);
+  const saveItem = (newItem) => {
+    setItem(newItem);
+    localStorage.setItem(itemName, JSON.stringify(newItem))
+  }
+  return [item, saveItem];
+}
 
 
 function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1')
-
-  let parsedTodos;
-
-  if (!localStorageTodos) {
-    parsedTodos = [];
-    localStorage.setItem('TODOS_V1', JSON.stringify(parsedTodos))
-  } else {
-    parsedTodos = JSON.parse(localStorageTodos);
-  }
-
-  const [todos, setTodos] = React.useState(parsedTodos);
+  const [todos, saveItem] = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo =>( !!todo.completed)).length;
@@ -39,11 +44,6 @@ function App() {
     const searchText = searchValue.toLowerCase() 
     return todoText.includes(searchText) 
   })
-
-  const saveTodos = (newTodos) => {
-    setTodos(newTodos);
-    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos))
-  }
 
   const completeTodo = (id) => {
     const newTodos = todos.map(todo => {
@@ -56,7 +56,7 @@ function App() {
       }
       return todo;
     })
-    saveTodos(newTodos);
+    saveItem(newTodos);
   }
 
   const deleteTodo = (id) => {
@@ -66,7 +66,7 @@ function App() {
       }
       return "";
     })
-    saveTodos(newTodos);
+    saveItem(newTodos);
   }
 
   return (
