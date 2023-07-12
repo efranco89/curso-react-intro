@@ -1,12 +1,14 @@
+import React from 'react';
 import './CreateTodoButton.css'
+import { TodoContex } from '../TodoContext';
 
 function CreateTodoButton(props) {
+  const { openModal, setOpenModal } = React.useContext(TodoContex)
   return (
     <button className="CreateTodoButton"
     onClick={
       (event) => {
-        props.setCounter(props.contador + 1)
-        
+        setOpenModal(!openModal)        
       } 
     }
     >+</button>
