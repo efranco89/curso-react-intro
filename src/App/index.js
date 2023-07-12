@@ -3,11 +3,11 @@ import React from 'react';
 import { AppUI } from './AppUI';
 
 function App() {
-  const [todos, saveItem] = useLocalStorage('TODOS_V1', []);
+  const {item: todos, saveItem: saveTodos, loading, error} = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo =>( !!todo.completed)).length;
-  const totalTodos = todos.length;
+  const totalTodos = todos.length;  
   const searchedTodos = todos.filter((todo) => {
     const todoText = todo.text.toLowerCase()
     const searchText = searchValue.toLowerCase() 
@@ -25,7 +25,7 @@ function App() {
       }
       return todo;
     })
-    saveItem(newTodos);
+    saveTodos(newTodos);
   }
 
   const deleteTodo = (id) => {
@@ -35,11 +35,13 @@ function App() {
       }
       return "";
     })
-    saveItem(newTodos);
+    saveTodos(newTodos);
   }
 
   return (
     <AppUI
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchValue={searchValue}
@@ -52,6 +54,8 @@ function App() {
 }
 
 export default App;
+
+// localStorage.removeItem('TODOS_V1')
 
 // const defaultTodos = [
 //   { id: 1,text: 'Cortar cebolla', completed: false },

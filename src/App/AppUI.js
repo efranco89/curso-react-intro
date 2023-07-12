@@ -3,6 +3,10 @@ import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { TodoItem } from '../TodoItem';
 import { CreateTodoButton } from '../CreateTodoButton';
+import { TodosLoading } from '../TodosLoading';
+import { TodosError } from '../TodosError';
+import { TodosEmpty } from '../TodosEmpty';
+
 
 function AppUI(props) {
   return (
@@ -14,7 +18,18 @@ function AppUI(props) {
       />
 
       <TodoList>
-        { props.searchedTodos.map(todo => (
+        { props.loading && (
+          <>
+            <TodosLoading/>
+            <TodosLoading/>
+            <TodosLoading/>
+            <TodosLoading/>
+          </>
+        )}
+        {props.error && <TodosError/>}
+        {(!props.loading && props.searchedTodos.length === 0) && <TodosEmpty/> }
+
+        {props.searchedTodos.map(todo => (
           <TodoItem 
             key={todo.id} 
             id={todo.id} 
