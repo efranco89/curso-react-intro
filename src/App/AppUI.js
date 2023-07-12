@@ -6,19 +6,26 @@ import { CreateTodoButton } from '../CreateTodoButton';
 import { TodosLoading } from '../TodosLoading';
 import { TodosError } from '../TodosError';
 import { TodosEmpty } from '../TodosEmpty';
+import { TodoContex } from '../TodoContext';
+import React from 'react';
 
-
-function AppUI(props) {
+function AppUI() {
+  const {
+    loading, 
+    error, 
+    searchedTodos, 
+    completeTodo, 
+    deleteTodo
+  } = React.useContext(TodoContex)
+  
   return (
     <>
-      <TodoCounter completed = {props.completedTodos} total = {props.totalTodos} />
-      <TodoSearch 
-        searchValue={props.searchValue}
-        setSearchValue={props.setSearchValue}
-      />
 
+      <TodoCounter/>
+      <TodoSearch />
+      
       <TodoList>
-        { props.loading && (
+        { loading && (
           <>
             <TodosLoading/>
             <TodosLoading/>
@@ -26,17 +33,17 @@ function AppUI(props) {
             <TodosLoading/>
           </>
         )}
-        {props.error && <TodosError/>}
-        {(!props.loading && props.searchedTodos.length === 0) && <TodosEmpty/> }
+        {error && <TodosError/>}
+        {(!loading && searchedTodos.length === 0) && <TodosEmpty/> }
 
-        {props.searchedTodos.map(todo => (
+        {searchedTodos.map(todo => (
           <TodoItem 
             key={todo.id} 
             id={todo.id} 
             text={todo.text}
             completed={todo.completed}
-            onComplete={() => props.completeTodo(todo.id)}
-            onDelete={() => props.deleteTodo(todo.id)}
+            onComplete={() => completeTodo(todo.id)}
+            onDelete={() => deleteTodo(todo.id)}
           />
         ))}
       </TodoList>

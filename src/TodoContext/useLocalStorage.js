@@ -22,7 +22,7 @@ function useLocalStorage(itemName, initialItem) {
         setError(true);
         setLoading(false);
       }
-    }, 5000)
+    }, 1000)
   }, [])
 
   const saveItem = (newItem) => {
@@ -35,3 +35,15 @@ function useLocalStorage(itemName, initialItem) {
 }
 
 export { useLocalStorage }
+
+// localStorage.removeItem('TODOS_V1')
+
+// const defaultTodos = [
+//   { id: 1,text: 'Cortar cebolla', completed: false },
+//   { id: 2,text: 'Tomar Curso Introduccion ReactJS', completed: false },
+//   { id: 3,text: 'Llorrar con la LLorona', completed: false },
+//   { id: 4,text: 'Revisar Correo', completed: false },
+//   { id: 5,text: 'Pedir Comida', completed: true },
+//   { id: 6,text: 'Fastidiar al Panda', completed: true },
+// ]
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
