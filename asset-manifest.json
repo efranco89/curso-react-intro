@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Users/enriquefranco/Documents/cursos_platzi/03_curso_react/curso-react-intro/build/static/css/main.db2ad7a9.css",
+    "main.js": "/Users/enriquefranco/Documents/cursos_platzi/03_curso_react/curso-react-intro/build/static/js/main.722aa747.js",
+    "index.html": "/Users/enriquefranco/Documents/cursos_platzi/03_curso_react/curso-react-intro/build/index.html",
+    "static/media/delete.svg": "/Users/enriquefranco/Documents/cursos_platzi/03_curso_react/curso-react-intro/build/static/media/delete.d9c7e0eeb3f573572e1521b7b69ed33e.svg",
+    "static/media/check.svg": "/Users/enriquefranco/Documents/cursos_platzi/03_curso_react/curso-react-intro/build/static/media/check.af03c9a6a0411e40578874e6f00e807b.svg",
+    "main.db2ad7a9.css.map": "/Users/enriquefranco/Documents/cursos_platzi/03_curso_react/curso-react-intro/build/static/css/main.db2ad7a9.css.map",
+    "main.722aa747.js.map": "/Users/enriquefranco/Documents/cursos_platzi/03_curso_react/curso-react-intro/build/static/js/main.722aa747.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.db2ad7a9.css",
+    "static/js/main.722aa747.js"
+  ]
+}
